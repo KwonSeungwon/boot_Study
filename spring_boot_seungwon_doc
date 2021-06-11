@@ -1,0 +1,13 @@
+[spring boot project 생성방법]
+- eclipse or intelli j를 이용해서 생성
+- spring initializr을 이용하여 생성 -> https://start.spring.io/
+
+[spring project 구조]
+메이븐 기본 프로젝트와 동일
+- 소스 코드(src/main/java)
+- 소스 리소스(src/main/resource)
+- 테스트 코드(src/test/java)
+- 테스트 리소스(src/test/resource)
+메인 애플리케이션 위치
+- 기본 패키지
+
