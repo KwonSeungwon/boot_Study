@@ -41,6 +41,45 @@ dependencyManagement를 이용 할 경우 spring boot에 필수적인 의존성�
 - @ConditionalOnXxxYyyZzz
 ※ @@ConditionalOnMissingBean -> bean이 없는경우 등록하게 하는 어노테이션
 
+[Custom autoconfiguration]
+- Xxx-Spring-Boot-Autoconfigure 모듈: 자동 설정
+- Xxx-Spring-Boot-Starter 모듈: 필요한 의존성 정의
+- 그냥 하나로 만들고 싶을 때는?
+- Xxx-Spring-Boot-Starter
+<구현방법>
+1. 의존성을 다음과 같이 추가한다.
+<dependencies>
+   <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-autoconfigure</artifactId>
+   </dependency>
+   <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-autoconfigure-processor</artifactId>
+       <optional>true</optional>
+   </dependency>
+</dependencies>
+
+<dependencyManagement>
+   <dependencies>
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-dependencies</artifactId>
+           <version>2.0.3.RELEASE</version>
+           <type>pom</type>
+           <scope>import</scope>
+       </dependency>
+   </dependencies>
+</dependencyManagement>
+2. @Configuration 파일 작성
+3. src/main/resource/META-INF에 spring.factories 파일 만들기
+4. spring.factories 안에 자동 설정 파일 추가
+5. org.springframework.boot.autoconfigure.EnableAutoConfiguration=\FQCN,\FQCN
+6. mvn install
+
+※ 스프링부트는 componetscan 후 autoconfiguration을 실행한다.
+- 즉 componetscan으로 생성된 빈이있으면 autoconfiguration으로 등록된 빈을 무시하게 되는 것.
+
 
 
 
