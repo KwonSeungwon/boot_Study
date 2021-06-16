@@ -79,6 +79,11 @@ dependencyManagement를 이용 할 경우 spring boot에 필수적인 의존성�
 
 ※ 스프링부트는 componetscan 후 autoconfiguration을 실행한다.
 - 즉 componetscan으로 생성된 빈이있으면 autoconfiguration으로 등록된 빈을 무시하게 되는 것.
+위 오류를 해결하는 방법
+- 덮어쓰기 방지 : @ConditionalOnMissingBean -> @Bean으로 설정되어 있지 않는 경우에만 컴포넌트 스캔시 빈으로 등록 
+- 빈 재정의 수고 없애기 : - @ConfigurationProperties(“holoman”)
+                       - @EnableConfigurationProperties(HolomanProperties)
+                        - 프로퍼티 키값 자동 완성
 
 
 
