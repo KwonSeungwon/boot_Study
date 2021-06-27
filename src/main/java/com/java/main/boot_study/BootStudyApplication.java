@@ -1,6 +1,7 @@
 package com.java.main.boot_study;
 
 import javafx.application.Application;
+import org.apache.catalina.startup.Tomcat;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.WebApplicationType;
@@ -9,6 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServlet;
 
 @SpringBootApplication
 //@SpringBootConfiguration
@@ -22,6 +25,7 @@ public class BootStudyApplication {
 //        SpringApplication application = new SpringApplication(Application.class);
 //        application.setWebApplicationType(WebApplicationType.NONE); // webApplication설정을 none으로 설정(이렇게 할 경우 웹서버가 아니게됨)
 //        application.run();
+
     }
 
 }

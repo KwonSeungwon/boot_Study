@@ -87,5 +87,49 @@ dependencyManagement를 이용 할 경우 spring boot에 필수적인 의존성�
 
 
 
+[스프링부트 내장웹서버]
+- 스프링 부트는 서버가 아니다.
+<스프링 부트에는 기본적으로 tomcat이 의존성으로 주입되어있다> -> autoconfiguration
+<tomcat을 직접만들어서 실행하는 방법>
+        Tomcat tomcat = new Tomcat();
+        tomcat.setPort(9010);
+        Context context = tomcat.addContext("/", "/");
+        HttpServlet servlet = new HttpServlet() {
+            @Override
+            protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                PrintWriter writer = resp.getWriter();
+                writer.println("<html><head><title>");
+                writer.println("tomcat");
+                writer.println("</title></head>");
+                writer.println("<body><h1>hello</h1></body>");
+                writer.println("</html>");
+            }
+        };
+        String servletName = "hello";
+        tomcat.addServlet("/", servletName, servlet);
+        context.addServletMappingDecoded("/hello", servletName); //hello라는 요청이 들어오면 실행됨
+        tomcat.start(); //tomcat을 실행
+        tomcat.getServer().await(); // 서버를 실행시키고 대기함
+
+    }
+- 톰캣 객체 생성
+- 포트 설정
+- 톰캣에 컨텍스트 추가
+- 서블릿 만들기
+- 톰캣에 서블릿 추가
+- 컨텍스트에 서블릿 맵핑
+- 톰캣 실행 및 대기
+- 이 모든 과정을 보다 상세히 또 유연하고 설정하고 실행해주는게 바로 스프링 부트의 자동 설정.
+※ 확인하고 싶으면 spring-boot의 autoconfiguration을 확인하면 됨(web 폴더)
+- ServletWebServerFactoryAutoConfiguration (서블릿 웹 서버 생성) -> servlet을 생성
+- TomcatServletWebServerFactoryCustomizer (서버 커스터마이징)
+- DispatcherServletAutoConfiguration -> HTTPServlet을 상속 받아서 spring이 만든 것임
+- 서블릿 만들고 등록
+※ DispatcherServlet : 여러 요청을 한 곳에서 받아서 적절한 컨트롤러로 위임 해주는 것
+※ Servlet : URL 한 개당 생성되는 서블릿
+
+
+
+
 
 
