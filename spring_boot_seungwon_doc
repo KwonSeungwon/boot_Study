@@ -133,3 +133,18 @@ dependencyManagement를 이용 할 경우 spring boot에 필수적인 의존성�
 
 
 
+다른 서블릿 컨테이너로 변경
+웹 서버 사용 하지 않기
+포트
+server.port=8080 -> 포트변경하기
+server.port=0 -> 0을 값으로 주면 랜덤 포트(비어있는 포트를 사용함)
+ApplicationListner<ServletWebServerInitializedEvent>
+
+
+
+
+
+
+
+
+

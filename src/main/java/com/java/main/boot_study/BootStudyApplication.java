@@ -1,6 +1,5 @@
 package com.java.main.boot_study;
 
-import javafx.application.Application;
 import org.apache.catalina.startup.Tomcat;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
